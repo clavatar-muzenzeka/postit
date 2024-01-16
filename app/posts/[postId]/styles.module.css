@@ -1,0 +1,3 @@
+.userInfos:hover + div>div{
+    display: block;
+}
