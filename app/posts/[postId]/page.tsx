@@ -13,6 +13,7 @@ import styles from "./styles.module.css";
 import UserDetailsComponent from "@/components/userDetailsComponent";
 import { ILocalPost } from "@/types/localPostInterface";
 import { ILocalUser } from "@/types/localUserInterface";
+import Link from "next/link";
 
 const page = async ({ params }: { params: { postId: string } }) => {
   let isLocal = params.postId.toString().length > 10;
@@ -20,7 +21,7 @@ const page = async ({ params }: { params: { postId: string } }) => {
     ? await fetchLocalPostById(params.postId)
     : await fetchPostById(params.postId);
   const session: Session = (await getServerSession(authOptions)) as Session;
-  const comments: Array<IComment> = await fetchComments(post.id);
+  const comments: Array<IComment> = await fetchComments(post.id??(post as unknown as ILocalPost)._id);
   const user: IUser | ILocalUser = isLocal
     ? ((post as unknown as ILocalPost).userId as ILocalUser)
     : await fetchUserById(post.userId.toString());
@@ -50,7 +51,17 @@ const page = async ({ params }: { params: { postId: string } }) => {
       <p>{post.body}</p>
       <div className="mt-8">
         <h1 className="text-4xl mb-4 border-b border-gray-100">Comments</h1>
-        <AddCommentComponent session={session}></AddCommentComponent>
+        <>
+          {session?.user?
+          <AddCommentComponent postId={params.postId} session={session}></AddCommentComponent>:
+          <Link
+            className="rounded-full cursor-pointer font-md px-4 py-2 bg-gray-800 text-white active:bg-gray-900 hover:bg-gray-600"
+            href="/auth/signin"
+          >
+            Sign in to leave comment
+          </Link>}
+          
+        </>
       </div>
       <div className="mt-8">
         <>{comments.map(mapCommentsToCommentComponents)}</>

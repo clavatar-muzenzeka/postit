@@ -2,11 +2,19 @@ import { connectToDB } from "@/utils/db";
 import { NextRequest } from "next/server";
 import { LocalComment } from "@/models/comment";
 import { ILocalComment } from "@/types/localCommentInterface";
-
-export const GET = async (request: NextRequest) => {
+export const GET = async (
+  request: NextRequest
+) => {
+  const postId = request.nextUrl.searchParams.get('postId');
+  
   try {
     await connectToDB();
-    const comments: Array<ILocalComment> = await LocalComment.find({}).sort({_id: -1});
+    console.log("Fetching comments for postId: ", postId);
+    const comments: Array<ILocalComment> = await LocalComment.find({
+      postId
+    }).sort({
+      _id: -1,
+    });
     console.log("Fetched comments: ", comments);
     return new Response(JSON.stringify(comments), { status: 200 });
   } catch (error: any) {
@@ -17,7 +25,7 @@ export const GET = async (request: NextRequest) => {
   }
 };
 
-export const COMMENT = async (request: NextRequest) => {
+export const POST = async (request: NextRequest) => {
   const receivedComment: ILocalComment = await request.json();
   try {
     await connectToDB();

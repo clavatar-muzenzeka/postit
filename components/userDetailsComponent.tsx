@@ -1,8 +1,9 @@
+import { ILocalUser } from "@/types/localUserInterface";
 import { IUser } from "@/types/userInterface";
 import React, { ReactNode } from "react";
 
-const UserDetailsComponent: (props: { user: IUser }) => React.JSX.Element = (props: {
-  user: IUser;
+const UserDetailsComponent: (props: { user: IUser|ILocalUser }) => React.JSX.Element = (props: {
+  user: IUser|ILocalUser;
 }) => {
   return (
     <div className="rounded-lg w-80 m-h-60 flex flex-col items-center">
