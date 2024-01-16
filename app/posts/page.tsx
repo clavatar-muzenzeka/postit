@@ -31,14 +31,14 @@ async function Posts(): Promise<JSX.Element> {
       <div className="mb-16">
         {session?.user ? (
           <Link
-            className="rounded-full px-6 py-2 bg-coorporate-orange border border-black"
+            className="rounded-full hover:bg-bg-yellow px-6 py-2 bg-coorporate-orange border border-black"
             href={`/posts/new?userId=${session?.user?._id ?? 0}`}
           >
             Add Post
           </Link>
         ) : (
           <Link
-            className="rounded-full cursor-pointer font-md px-4 py-2 bg-gray-800 text-white active:bg-gray-900 hover:bg-gray-600"
+            className="rounded-full hover:bg-bg-yellow px-6 py-2 bg-coorporate-orange border border-black"
             href="/auth/signin"
           >
             Sign in to add post

@@ -5,6 +5,8 @@ import "./globals.css";
 import HeaderComponent from "@/components/headerComponent";
 import Image from "next/image";
 import FooterComponent from "@/components/footerComponent";
+import { Session, getServerSession } from "next-auth";
+import { authOptions } from "@/config/authOptions";
 
 const inter = Inter({ subsets: ["latin"] });
 const abril = Abril_Fatface({ weight: "400", subsets: ["latin", "latin-ext"] });
@@ -14,17 +16,18 @@ export const metadata: Metadata = {
   description: "Post your ideas and thoughts",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session: Session = (await getServerSession(authOptions)) as Session;
   return (
     <html lang="en">
       <body className="${inter.className} bg-gradient-to-b from-bg-yellow-light to-bg-yellow">
         <div className="flex flex-col">
           <div className="h-20 border-b border-black">
-            <HeaderComponent></HeaderComponent>
+            <HeaderComponent session={session}></HeaderComponent>
           </div>
           <div className="h-[calc(100vh-136px)] border-b border-black overflow-hidden">
             <div className="flex h-full">
