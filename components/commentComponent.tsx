@@ -5,7 +5,7 @@ const CommentComponent: (props: {
   comment: IComment;
 }) => React.JSX.Element = (props: { comment: IComment }) => {
   return (
-    <div className="p-6 mb-4 bg-gray-100 rounded-lg">
+    <div className="p-6 mb-4 bg-black hover:bg-coorporate-blue text-white">
       <h2 className="text-2xl font-light capitalize text-gray-600">
         {props.comment.name}
       </h2>

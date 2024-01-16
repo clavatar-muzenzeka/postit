@@ -7,11 +7,12 @@ import { SignInOptions, SignInResponse, signIn } from "next-auth/react";
 import React, { EventHandler, FormEvent, useState } from "react";
 
 function AddCommentComponent({
-  session, postId
+  session,
+  postId,
 }: {
   session: Session;
-  postId
-: string}): JSX.Element {
+  postId: string;
+}): JSX.Element {
   const [comment, setComment] = useState<ILocalComment>({} as ILocalComment);
 
   const onFormSubmit: EventHandler<FormEvent> = async (e) => {
@@ -24,12 +25,17 @@ function AddCommentComponent({
     if (resp) window.location.reload();
   };
   return (
-    <div>
+    <div className="mt-8 p-12 border border-black">
       <form method="POST" onSubmit={onFormSubmit}>
         <div className="flex flex-col">
-          <label className="mb-2 text-gray-700">Title</label>
+          <label
+            for="title"
+            className="mb-2 text-xl text-coorporate-orange after:content-['*']"
+          >
+            Title
+          </label>
           <input
-            className="border border-gray-300 p-2 rounded-lg mb-4"
+            className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
             name="title"
             id="title"
             type="text"
@@ -40,11 +46,18 @@ function AddCommentComponent({
           />
         </div>
         <div className="flex flex-col">
-          <label className="mb-2 text-gray-700">Comment</label>
+          <label
+            for="body"
+            className="mb-2 text-xl
+            
+             text-coorporate-orange after:content-['*']"
+          >
+            Comment
+          </label>
           <textarea
-            className="border border-gray-300 p-2 rounded-lg mb-4"
-            name="username"
-            id="username"
+            className="bg-bg-yellow p-2 mb-4 focus:outline-none focus:border-coorporate-orange focus:border"
+            name="body"
+            id="body"
             rows={4}
             value={comment.body}
             onChange={({ target }) =>
@@ -52,12 +65,12 @@ function AddCommentComponent({
             }
           />
         </div>
-
         <input
-          className="rounded-full cursor-pointer font-md px-4 py-2 bg-gray-800 text-white hover:bg-gray-600"
+          className="rounded-full px-6 py-2 hover:bg-bg-yellow cursor-pointer bg-coorporate-orange border border-black h-auto float-end"
           type="submit"
           value={`Add comment as ${session?.user?.username}`}
         />
+        <div className="clear-end"></div>
       </form>
     </div>
   );

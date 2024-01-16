@@ -21,7 +21,9 @@ const page = async ({ params }: { params: { postId: string } }) => {
     ? await fetchLocalPostById(params.postId)
     : await fetchPostById(params.postId);
   const session: Session = (await getServerSession(authOptions)) as Session;
-  const comments: Array<IComment> = await fetchComments(post.id??(post as unknown as ILocalPost)._id);
+  const comments: Array<IComment> = await fetchComments(
+    post.id ?? (post as unknown as ILocalPost)._id
+  );
   const user: IUser | ILocalUser = isLocal
     ? ((post as unknown as ILocalPost).userId as ILocalUser)
     : await fetchUserById(post.userId.toString());
@@ -32,12 +34,13 @@ const page = async ({ params }: { params: { postId: string } }) => {
   };
   return (
     <div>
-      <h1 className="text-4xl capitalize border-b pb-4 font-extrabold border-gray-300">
+      <h1 className="text-6xl w-full relative text-coorporate-blue font-serif ${abril.className} mb-4 pb-4 font-extrabold capitalize">
         {post.title}
       </h1>
       <div
         className={
-          styles.userInfos + ` mt-2 mb-8 rounded-md bg-gray-100 px-12 py-6`
+          styles.userInfos +
+          ` mt-2 mb-8 text-white  bg-coorporate-orange  px-12 py-6`
         }
       >
         Autor: <strong>{user.username}</strong> ({user.email})
@@ -50,17 +53,23 @@ const page = async ({ params }: { params: { postId: string } }) => {
 
       <p>{post.body}</p>
       <div className="mt-8">
-        <h1 className="text-4xl mb-4 border-b border-gray-100">Comments</h1>
+        <h1 className="text-4xl mb-4 pb-2 font-light text-coorporate-blue border-coorporate-blue">
+          Comments
+        </h1>
         <>
-          {session?.user?
-          <AddCommentComponent postId={params.postId} session={session}></AddCommentComponent>:
-          <Link
-            className="rounded-full cursor-pointer font-md px-4 py-2 bg-gray-800 text-white active:bg-gray-900 hover:bg-gray-600"
-            href="/auth/signin"
-          >
-            Sign in to leave comment
-          </Link>}
-          
+          {session?.user ? (
+            <AddCommentComponent
+              postId={params.postId}
+              session={session}
+            ></AddCommentComponent>
+          ) : (
+            <Link
+              className="rounded-full cursor-pointer font-md px-4 py-2 bg-gray-800 text-white active:bg-gray-900 hover:bg-gray-600"
+              href="/auth/signin"
+            >
+              Sign in to leave comment
+            </Link>
+          )}
         </>
       </div>
       <div className="mt-8">

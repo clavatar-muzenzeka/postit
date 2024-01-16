@@ -13,8 +13,8 @@ const PostComponent: (props: {
         (props.post as IPost).id ?? (props.post as ILocalPost)._id
       }`}
     >
-      <div className="p-6 mb-4 bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-lg">
-        <h2 className="text-2xl font-light capitalize text-gray-600">
+      <div className="p-6 rounded mb-6 bg-black hover:bg-coorporate-blue text-white cursor-pointer ">
+        <h2 className="text-xl font-light mb-4 capitalize text-bg-yellow">
           {props.post.title}
         </h2>
         <p className="mb-4 text-lg">{props.post.body}</p>
