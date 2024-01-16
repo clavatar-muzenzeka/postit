@@ -23,41 +23,52 @@ function NewPost({searchParams}: {searchParams:{userId: string}}): JSX.Element {
    };
 
   return (
-    <div>
-      <h1 className="text-4xl mb-8 border-b pb-4 font-extrabold border-gray-300">
+    <>
+      <h1 className="text-6xl w-full relative text-coorporate-blue font-serif ${abril.className} mb-4 pb-4 font-extrabold">
         New Post
       </h1>
-      <form method="POST" onSubmit={onFormSubmit}>
-        <div className="flex flex-col">
-          <label className="mb-2 text-gray-700">Title</label>
-          <input
-            className="border border-gray-300 p-2 rounded-lg mb-4"
-            name="title"
-            id="title"
-            type="text"
-            value={post.title}
-            onChange={({ target }) => setPost({ ...post, title: target.value })}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="mb-2 text-gray-700">Content</label>
-          <textarea
-            className="border border-gray-300 p-2 rounded-lg mb-4"
-            name="body"
-            id="body"
-            rows={4}
-            value={post.body}
-            onChange={({ target }) => setPost({ ...post, body: target.value })}
-          />
-        </div>
+      <div className="mt-8 p-12 border border-black">
+        <form method="POST" onSubmit={onFormSubmit}>
+          <div className="flex flex-col">
+            <label for="title" className="mb-2 text-xl text-coorporate-orange after:content-['*']">
+              Title
+            </label>
+            <input
+              className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
+              name="title"
+              id="title"
+              type="text"
+              value={post.title}
+              onChange={({ target }) =>
+                setPost({ ...post, title: target.value })
+              }
+            />
+          </div>
+          <div className="flex flex-col">
+            <label for="body" className="mb-2 text-xl text-coorporate-orange after:content-['*']">
+              Content
+            </label>
+            <textarea
+              className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
+              name="body"
+              id="body"
+              rows={4}
+              value={post.body}
+              onChange={({ target }) =>
+                setPost({ ...post, body: target.value })
+              }
+            />
+          </div>
 
-        <input
-          className="rounded-full font-md px-4 py-2 bg-gray-800 text-white hover:bg-gray-600"
-          type="submit"
-          value="Add post"
-        />
-      </form>
-    </div>
+          <input
+            className="rounded-full px-6 py-2 hover:bg-bg-yellow cursor-pointer bg-coorporate-orange border border-black h-auto float-end"
+            type="submit"
+            value="Add post"
+          />
+          <div className="clear-end"></div>
+        </form>
+      </div>
+    </>
   );
 }
 

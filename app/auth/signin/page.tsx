@@ -3,7 +3,7 @@ import { AUTH_REDIRECT_URL } from "@/config/global";
 import { SignInOptions, SignInResponse, signIn } from "next-auth/react";
 import React, { EventHandler, FormEvent, useState } from "react";
 
-function page(): JSX.Element {
+function Signin(): JSX.Element {
   const [credentials, setCredentials] = useState<{
     username: string;
     password: string;
@@ -19,43 +19,58 @@ function page(): JSX.Element {
   };
   return (
     <div>
-      <h1 className="text-4xl mb-4 border-b border-gray-100">Signin</h1>
-      <form method="POST" onSubmit={onFormSubmit} className="w-1/4">
-        <div className="flex flex-col">
-          <label className="mb-2 text-gray-700">Username</label>
-          <input
-            className="border border-gray-300 p-2 rounded-lg mb-4"
-            type="text"
-            name="username"
-            id="username"
-            value={credentials.username}
-            onChange={({ target }) =>
-              setCredentials({ ...credentials, username: target.value })
-            }
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="mb-2 text-gray-700">Password</label>
-          <input
-            className="border border-gray-300 p-2 rounded-lg mb-4"
-            type="password"
-            name="password"
-            id="password"
-            value={credentials.password}
-            onChange={({ target }) =>
-              setCredentials({ ...credentials, password: target.value })
-            }
-          />
-        </div>
+      <h1 className="text-6xl w-full relative text-coorporate-blue font-serif ${abril.className} mb-4 pb-4 font-extrabold">
+        Signin
+      </h1>
+      <div className="mt-8 p-12 border border-black">
+        <form method="POST" onSubmit={onFormSubmit}>
+          <div className="flex flex-col">
+            <label
+              for="username"
+              className="mb-2 text-xl text-coorporate-orange after:content-['*']"
+            >
+              Username
+            </label>
+            <input
+              className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
+              type="text"
+              name="username"
+              id="username"
+              value={credentials.username}
+              onChange={({ target }) =>
+                setCredentials({ ...credentials, username: target.value })
+              }
+            />
+          </div>
+          <div className="flex flex-col">
+            <label
+              for="password"
+              className="mb-2 text-xl text-coorporate-orange after:content-['*']"
+            >
+              Password
+            </label>
+            <input
+              className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
+              type="password"
+              name="password"
+              id="password"
+              value={credentials.password}
+              onChange={({ target }) =>
+                setCredentials({ ...credentials, password: target.value })
+              }
+            />
+          </div>
 
-        <input
-          className="rounded-full font-md px-4 py-2 bg-gray-800 text-white hover:bg-gray-600"
-          type="submit"
-          value="Signin"
-        />
-      </form>
+          <input
+            className="rounded-full px-6 py-2 hover:bg-bg-yellow cursor-pointer bg-coorporate-orange border border-black h-auto float-end"
+            type="submit"
+            value="Signin"
+          />
+          <div className="clear-end"></div>
+        </form>
+      </div>
     </div>
   );
 }
 
-export default page;
+export default Signin;
