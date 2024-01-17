@@ -7,7 +7,7 @@
 
 > This project was developed as part of a professional assessment
 
-It is based on Next JS version 14, Node JS version 20.11.0, sous le language typescript, avec le styles appliqués grâce au framework Taillwind CSS, duquel nous avons tiré profit des aspects responsives pour offrir une expérience convainable sur différents formats d'écran; and Mongo DB version 4.4.0. All these technologies are compacted in a Docker container to ensure postability.
+It is based on Next JS version 14, Node JS version 20.11.0, sous le language typescript, avec le styles appliqués grâce au framework Taillwind CSS, from which we've taken advantage of responsiveness to deliver a suitable experience on different screen formats; and Mongo DB version 4.4.0. All these technologies are compacted in a Docker container to ensure postability.
 
 The rest of the runtime and dev dependencies are included with their versions in the manifest package.json file at the root of the project.
 
