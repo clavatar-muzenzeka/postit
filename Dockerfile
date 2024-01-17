@@ -1,4 +1,4 @@
-FROM node:20:11 as server
+FROM node:20.11 as server
 # Set the working directory
 WORKDIR /app
 COPY ./package.json /app/
