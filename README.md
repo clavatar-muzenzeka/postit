@@ -1,12 +1,12 @@
 # Postit
 
-![Tux, the Linux mascot](/assets/images/tux.png)
+![Version mobile](https://drive.google.com/file/d/1sXfO0ZJ2KZ8FsIrECj6TQdzAyOkEg14y/view?usp=drive_link)
 
 ## Overview
 
 > This project was developed as part of a professional assessment
 
-It is based on Next JS version 14, Node JS version 20.11.0 and Mongo DB version 4.4.0. All these technologies are compacted in a Docker container to ensure postability.
+It is based on Next JS version 14, Node JS version 20.11.0, sous le language typescript, avec le styles appliqués grâce au framework Taillwind CSS, duquel nous avons tiré profit des aspects responsives pour offrir une expérience convainable sur différents formats d'écran; and Mongo DB version 4.4.0. All these technologies are compacted in a Docker container to ensure postability.
 
 The rest of the runtime and dev dependencies are included with their versions in the manifest package.json file at the root of the project.
 
@@ -24,6 +24,8 @@ On a modular level, the project includes a frontend module and a Rest Serverless
 - User registration
 
 - User authentication (based on credentials strategy and session management via JWT strategy)
+
+
 
 ## Project launch
 
