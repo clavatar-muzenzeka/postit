@@ -1,5 +1,7 @@
 # Postit
 
+[Tux, the Linux mascot](/assets/images/tux.png)
+
 ## Overview
 
 > This project was developed as part of a professional assessment
