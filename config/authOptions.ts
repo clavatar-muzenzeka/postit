@@ -1,11 +1,13 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth, { User } from "next-auth";
-import { LocalUser } from "@/models/user";
+import { ILocalAuthUser, LocalUser } from "@/models/user";
 import { connectToDB } from "@/utils/db";
 import { HydratedDocument } from "mongoose";
 import { ILocalUser } from "@/types/localUserInterface";
 import { AuthOptions } from "next-auth";
 import { SECRET } from "./global";
+// @ts-ignore
+import * as bcrypt from "bcryptjs";
 export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
@@ -13,12 +15,14 @@ export const authOptions: AuthOptions = {
         if (!(credentials && credentials.username))
           throw new Error("No username provided");
         await connectToDB();
-        const dbUser: HydratedDocument<ILocalUser> | null =
+        const dbUser: HydratedDocument<ILocalAuthUser> | null =
           await LocalUser.findOne({
             username: credentials.username,
           });
 
         if (!dbUser) throw new Error("No user found");
+        if (!bcrypt.compareSync(credentials.password, dbUser.hashedPassword))
+          throw new Error("Incorrect password");
         let { _id, ...newDBUser } = dbUser;
         let user: User = {
           ...newDBUser,
