@@ -3,16 +3,39 @@ import { ILocalUser } from "@/types/localUserInterface";
 import { createUser } from "@/utils/usersProvider";
 import React, { EventHandler, FormEvent, useState } from "react";
 
-const AddUserPage: (props: {
-}) => React.JSX.Element = () => {
+const AddUserPage: (props: {}) => React.JSX.Element = () => {
   const [user, setUser] = useState<ILocalUser>({} as ILocalUser);
+  const [errors, setErrors] = useState<{
+    nameError?: string;
+    usernameError?: string;
+    passwordError?: string;
+  }>({});
+
+  const validateForm = (formValue: ILocalUser): boolean => {
+    let formValid = false;
+    if (!formValue.name) {
+      setErrors({ nameError: "Name is required" });
+    } else if (!formValue.username)
+      setErrors({ usernameError: "Username is required" });
+    else if (!formValue.password)
+      setErrors({ passwordError: "Password is required" });
+    else if (formValue.password.length < 4)
+      setErrors({ passwordError: "Password must have at least 4 characters" });
+    else {
+      setErrors({});
+      formValid = true;
+    }
+
+    return formValid;
+  };
 
   const onFormSubmit: EventHandler<FormEvent> = async (e) => {
     e.preventDefault();
+    if (validateForm(user)) {
+      const resp: ILocalUser | undefined = await createUser(user);
 
-    const resp: ILocalUser | undefined = await createUser(user);
-
-    if (resp) window.location.href = "/auth/signin";
+      if (resp) window.location.href = "/auth/signin";
+    }
   };
   return (
     <div
@@ -51,6 +74,9 @@ const AddUserPage: (props: {
                   setUser({ ...user, name: target.value })
                 }
               />
+              {errors.nameError && (
+                <p className="text-red-600 text-sm">{errors.nameError}</p>
+              )}
             </div>
             <div className="flex flex-col w-full">
               <label
@@ -70,6 +96,9 @@ const AddUserPage: (props: {
                   setUser({ ...user, username: target.value })
                 }
               />
+              {errors.usernameError && (
+                <p className="text-red-600 text-sm">{errors.usernameError}</p>
+              )}
             </div>
             <div className="flex flex-col w-full">
               <label
@@ -89,6 +118,9 @@ const AddUserPage: (props: {
                   setUser({ ...user, password: target.value })
                 }
               />
+              {errors.passwordError && (
+                <p className="text-red-600 text-sm">{errors.passwordError}</p>
+              )}
             </div>
           </div>
 

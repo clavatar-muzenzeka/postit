@@ -9,16 +9,34 @@ function AddPostPage({
   searchParams: { userId: string };
 }): JSX.Element {
   const [post, setPost] = useState<ILocalPost>({} as ILocalPost);
+  const [errors, setErrors] = useState<{
+    titleError?: string;
+    bodyError?: string;
+  }>({});
+
+  const validateForm = (formValue: ILocalPost): boolean => {
+    let formValid = false;
+    if (!formValue.title) setErrors({ titleError: "Post title is required" });
+    else if (!formValue.body)
+      setErrors({ bodyError: "Post content is required" });
+    else {
+      setErrors({});
+      formValid = true;
+    }
+    return formValid;
+  };
 
   const onFormSubmit: EventHandler<FormEvent> = async (e) => {
     e.preventDefault();
 
-    const createdPost = await createPost({
-      ...post,
-      userId: searchParams.userId,
-    });
+    if (validateForm(post)) {
+      const createdPost = await createPost({
+        ...post,
+        userId: searchParams.userId,
+      });
 
-    if (createdPost) window.location.href = "/posts";
+      if (createdPost) window.location.href = "/posts";
+    }
   };
 
   return (
@@ -31,7 +49,7 @@ function AddPostPage({
       </h1>
       <div className="mt-8 p-12 border border-black">
         <form method="POST" onSubmit={onFormSubmit}>
-          <div className="flex flex-col">
+          <div className="flex mb-2 flex-col">
             <label
               htmlFor="title"
               className="mb-2 text-xl text-coorporate-orange after:content-['*']"
@@ -49,8 +67,11 @@ function AddPostPage({
                 setPost({ ...post, title: target.value })
               }
             />
+            {errors.titleError && (
+              <p className="text-red-600 text-sm">{errors.titleError}</p>
+            )}
           </div>
-          <div className="flex flex-col">
+          <div className="flex mb-2 flex-col">
             <label
               htmlFor="body"
               className="mb-2 text-xl text-coorporate-orange after:content-['*']"
@@ -68,6 +89,9 @@ function AddPostPage({
                 setPost({ ...post, body: target.value })
               }
             />
+            {errors.bodyError && (
+              <p className="text-red-600 text-sm">{errors.bodyError}</p>
+            )}
           </div>
 
           <input

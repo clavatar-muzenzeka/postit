@@ -2,11 +2,14 @@ import { connectToDB } from "@/utils/db";
 import { NextRequest } from "next/server";
 import { LocalPost } from "@/models/post";
 import { ILocalPost } from "@/types/localPostInterface";
+import { getSession } from "next-auth/react";
+import { Session, getServerSession } from "next-auth";
+import { authOptions } from "@/config/authOptions";
 
 export const GET = async (request: NextRequest) => {
   try {
     await connectToDB();
-    const posts: Array<ILocalPost> = await LocalPost.find({}).sort({_id: -1});
+    const posts: Array<ILocalPost> = await LocalPost.find({}).sort({ _id: -1 });
     console.log("Fetched posts: ", posts);
     return new Response(JSON.stringify(posts), { status: 200 });
   } catch (error: any) {
@@ -18,6 +21,8 @@ export const GET = async (request: NextRequest) => {
 };
 
 export const POST = async (request: NextRequest) => {
+    const session: Session = (await getServerSession(authOptions)) as Session;
+  if (!session) return new Response("Unauthenticated user", { status: 401 });
   const receivedPost: ILocalPost = await request.json();
   try {
     await connectToDB();

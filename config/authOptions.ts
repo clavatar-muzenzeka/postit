@@ -7,6 +7,7 @@ import { AuthOptions } from "next-auth";
 import { SECRET } from "./global";
 // @ts-ignore
 import * as bcrypt from "bcryptjs";
+import GlobalError from "@/app/global-error";
 export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
@@ -59,6 +60,7 @@ export const authOptions: AuthOptions = {
     secret: SECRET,
   },
   pages: {
-    signIn: "/api/auth/sigin",
+    signIn: "/auth/sigin",
+    error: "/auth-error",
   },
 };

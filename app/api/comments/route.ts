@@ -2,16 +2,16 @@ import { connectToDB } from "@/utils/db";
 import { NextRequest } from "next/server";
 import { LocalComment } from "@/models/comment";
 import { ILocalComment } from "@/types/localCommentInterface";
-export const GET = async (
-  request: NextRequest
-) => {
-  const postId = request.nextUrl.searchParams.get('postId');
-  
+import { Session, getServerSession } from "next-auth";
+import { authOptions } from "@/config/authOptions";
+export const GET = async (request: NextRequest) => {
+  const postId = request.nextUrl.searchParams.get("postId");
+
   try {
     await connectToDB();
     console.log("Fetching comments for postId: ", postId);
     const comments: Array<ILocalComment> = await LocalComment.find({
-      postId
+      postId,
     }).sort({
       _id: -1,
     });
@@ -26,6 +26,8 @@ export const GET = async (
 };
 
 export const POST = async (request: NextRequest) => {
+  const session: Session = (await getServerSession(authOptions)) as Session;
+  if (!session) return new Response("Unauthenticated user", { status: 401 });
   const receivedComment: ILocalComment = await request.json();
   try {
     await connectToDB();
