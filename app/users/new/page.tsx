@@ -1,25 +1,25 @@
 "use client";
-import { AUTH_REDIRECT_URL } from "@/config/global";
 import { ILocalUser } from "@/types/localUserInterface";
 import { createUser } from "@/utils/usersProvider";
-import { create } from "domain";
-import { SignInOptions, SignInResponse, signIn } from "next-auth/react";
 import React, { EventHandler, FormEvent, useState } from "react";
 
-function AddUser(): JSX.Element {
+const AddUserPage: (props: {
+}) => React.JSX.Element = () => {
   const [user, setUser] = useState<ILocalUser>({} as ILocalUser);
 
   const onFormSubmit: EventHandler<FormEvent> = async (e) => {
     e.preventDefault();
-    
-    const resp: ILocalUser | undefined = await createUser(user)
 
-    if(resp) window.location.href = "/auth/signin"
-    
+    const resp: ILocalUser | undefined = await createUser(user);
+
+    if (resp) window.location.href = "/auth/signin";
   };
   return (
-    <div className="w-full">
-      <h1 className="text-6xl w-full relative text-coorporate-blue font-serif ${abril.className} mb-4 pb-4 font-extrabold">
+    <div
+      data-testid="add-user-page"
+      className="w-full max-sm:flex max-sm:flex-col"
+    >
+      <h1 className="text-6xl max-sm:text-center w-full relative text-coorporate-blue font-serif ${abril.className} mb-4 pb-4 font-extrabold">
         Register
       </h1>
       <div className="mt-8 w-full p-12 border border-black">
@@ -32,15 +32,16 @@ function AddUser(): JSX.Element {
             <div className="w-full bg-gray-200 h-[1px]"></div>
           </div>
 
-          <div className="flex space-x-4 w-full">
+          <div className="flex max-sm:flex-col max-sm:space-x-0 space-x-4 w-full">
             <div className="flex flex-col w-full">
               <label
-                for="name"
+                htmlFor="name"
                 className="mb-2 text-xl text-coorporate-orange after:content-['*']"
               >
                 Name
               </label>
               <input
+                data-testid="name-input"
                 className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
                 type="text"
                 name="name"
@@ -53,12 +54,13 @@ function AddUser(): JSX.Element {
             </div>
             <div className="flex flex-col w-full">
               <label
-                for="username"
+                htmlFor="username"
                 className="mb-2 text-xl text-coorporate-orange after:content-['*']"
               >
                 Username
               </label>
               <input
+                data-testid="username-input"
                 className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
                 type="text"
                 name="username"
@@ -71,12 +73,13 @@ function AddUser(): JSX.Element {
             </div>
             <div className="flex flex-col w-full">
               <label
-                for="password"
+                htmlFor="password"
                 className="mb-2 text-xl text-coorporate-orange after:content-['*']"
               >
                 Password
               </label>
               <input
+                data-testid="password-input"
                 className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
                 type="password"
                 name="password"
@@ -97,15 +100,16 @@ function AddUser(): JSX.Element {
             <div className="w-full bg-gray-200 h-[1px]"></div>
           </div>
 
-          <div className="flex space-x-4 w-full">
+          <div className="flex max-sm:flex-col max-sm:space-x-0 space-x-4 w-full">
             <div className="flex flex-col w-full">
               <label
-                for="street"
+                htmlFor="street"
                 className="mb-2 text-xl text-coorporate-orange"
               >
                 Street
               </label>
               <input
+                data-testid="street-input"
                 className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
                 type="text"
                 name="street"
@@ -124,12 +128,13 @@ function AddUser(): JSX.Element {
             </div>
             <div className="flex flex-col w-full">
               <label
-                for="suite"
+                htmlFor="suite"
                 className="mb-2 text-xl text-coorporate-orange"
               >
                 Suite
               </label>
               <input
+                data-testid="suite-input"
                 className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
                 type="text"
                 name="suite"
@@ -148,12 +153,16 @@ function AddUser(): JSX.Element {
             </div>
           </div>
 
-          <div className="flex space-x-4 w-full">
+          <div className="flex max-sm:flex-col max-sm:space-x-0 space-x-4 w-full">
             <div className="flex flex-col w-3/4 w-full">
-              <label for="city" className="mb-2 text-xl text-coorporate-orange">
+              <label
+                htmlFor="city"
+                className="mb-2 text-xl text-coorporate-orange"
+              >
                 City
               </label>
               <input
+                data-testid="city-input"
                 className="bg-bg-yellow p-2 mb-4   focus:outline-none focus:border-coorporate-orange focus:border"
                 type="text"
                 name="city"
@@ -170,14 +179,15 @@ function AddUser(): JSX.Element {
                 }
               />
             </div>
-            <div className="flex flex-col w-1/4">
+            <div className="flex flex-col max-sm:w-full w-1/4">
               <label
-                for="zipcode"
+                htmlFor="zipcode"
                 className="mb-2 text-xl text-coorporate-orange"
               >
                 Zip Code
               </label>
               <input
+                data-testid="zipcode-input"
                 className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
                 type="text"
                 name="zipcode"
@@ -204,18 +214,19 @@ function AddUser(): JSX.Element {
             <div className="w-full bg-gray-200 h-[1px]"></div>
           </div>
 
-          <div className="flex space-x-4 w-full">
+          <div className="flex max-sm:flex-col max-sm:space-x-0 space-x-4 w-full">
             <div className="flex flex-col w-full">
               <label
-                for="email"
+                htmlFor="email"
                 className="mb-2 text-xl text-coorporate-orange"
               >
                 Email
               </label>
               <input
+                data-testid="email-input"
                 className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
                 type="email"
-                name="username"
+                name="email"
                 id="username"
                 value={user.email}
                 onChange={({ target }) =>
@@ -225,12 +236,13 @@ function AddUser(): JSX.Element {
             </div>
             <div className="flex flex-col w-full">
               <label
-                for="phone"
+                htmlFor="phone"
                 className="mb-2 text-xl text-coorporate-orange"
               >
                 Phone
               </label>
               <input
+                data-testid="phone-input"
                 className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
                 type="phone"
                 name="phone"
@@ -243,12 +255,13 @@ function AddUser(): JSX.Element {
             </div>
             <div className="flex flex-col w-full">
               <label
-                for="website"
+                htmlFor="website"
                 className="mb-2 text-xl text-coorporate-orange"
               >
                 Web Site
               </label>
               <input
+                data-testid="website-input"
                 className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
                 type="website"
                 name="website"
@@ -269,15 +282,16 @@ function AddUser(): JSX.Element {
             <div className="w-full bg-gray-200 h-[1px]"></div>
           </div>
 
-          <div className="flex space-x-4 w-full">
+          <div className="flex max-sm:flex-col max-sm:space-x-0 space-x-4 w-full">
             <div className="flex flex-col w-full">
               <label
-                for="companyName"
+                htmlFor="companyName"
                 className="mb-2 text-xl text-coorporate-orange"
               >
                 Company Name
               </label>
               <input
+                data-testid="company-name-input"
                 className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
                 type="text"
                 name="companyName"
@@ -296,12 +310,13 @@ function AddUser(): JSX.Element {
             </div>
             <div className="flex flex-col w-full">
               <label
-                for="companyBs"
+                htmlFor="companyBs"
                 className="mb-2 text-xl text-coorporate-orange"
               >
                 Company Business Service
               </label>
               <input
+                data-testid="company-bs-input"
                 className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
                 type="text"
                 name="companyBs"
@@ -323,12 +338,13 @@ function AddUser(): JSX.Element {
           <div className="flex space-x-4 w-full mb-4">
             <div className="flex flex-col w-full">
               <label
-                for="companyCatchPhrase"
+                htmlFor="companyCatchPhrase"
                 className="mb-2 text-xl text-coorporate-orange"
               >
                 Company Catch Prase
               </label>
               <input
+                data-testid="company-catch-phrase-input"
                 className="bg-bg-yellow p-2 mb-4   focus:outline-none focus:border-coorporate-orange focus:border"
                 type="text"
                 name="companyCatchPhrase"
@@ -347,7 +363,8 @@ function AddUser(): JSX.Element {
             </div>
           </div>
           <input
-            className="rounded-full px-6 py-2 hover:bg-bg-yellow cursor-pointer bg-coorporate-cyan border border-black h-auto float-end"
+            data-testid="submit-user-button"
+            className="max-sm:w-full rounded-full px-6 py-2 hover:bg-bg-yellow cursor-pointer bg-coorporate-cyan border border-black h-auto float-end"
             type="submit"
             value="Register"
           />
@@ -356,6 +373,6 @@ function AddUser(): JSX.Element {
       </div>
     </div>
   );
-}
+};
 
-export default AddUser;
+export default AddUserPage;

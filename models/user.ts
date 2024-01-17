@@ -1,5 +1,5 @@
 import { ILocalUser } from "@/types/localUserInterface";
-import { Schema, models, model } from "mongoose";
+import mongoose, { Schema, models, model } from "mongoose";
 // @ts-ignore
 import * as bcrypt from "bcryptjs";
 

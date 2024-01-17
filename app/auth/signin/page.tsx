@@ -3,7 +3,7 @@ import { AUTH_REDIRECT_URL } from "@/config/global";
 import { SignInOptions, SignInResponse, signIn } from "next-auth/react";
 import React, { EventHandler, FormEvent, useState } from "react";
 
-function Signin(): JSX.Element {
+function SigninPage(): JSX.Element {
   const [credentials, setCredentials] = useState<{
     username: string;
     password: string;
@@ -18,20 +18,21 @@ function Signin(): JSX.Element {
     } as SignInOptions);
   };
   return (
-    <div>
-      <h1 className="text-6xl w-full relative text-coorporate-blue font-serif ${abril.className} mb-4 pb-4 font-extrabold">
+    <div className="max-sm:flex max-sm:flex-col" data-testid="signin-page">
+      <h1 className="text-6xl max-sm:text-center w-full relative text-coorporate-blue font-serif ${abril.className} mb-4 pb-4 font-extrabold">
         Signin
       </h1>
       <div className="mt-8 p-12 border border-black">
         <form method="POST" onSubmit={onFormSubmit}>
           <div className="flex flex-col">
             <label
-              for="username"
+              htmlFor="username"
               className="mb-2 text-xl text-coorporate-orange after:content-['*']"
             >
               Username
             </label>
             <input
+              data-testid="username-input"
               className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
               type="text"
               name="username"
@@ -44,12 +45,13 @@ function Signin(): JSX.Element {
           </div>
           <div className="flex flex-col">
             <label
-              for="password"
+              htmlFor="password"
               className="mb-2 text-xl text-coorporate-orange after:content-['*']"
             >
               Password
             </label>
             <input
+              data-testid="password-input"
               className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
               type="password"
               name="password"
@@ -62,7 +64,7 @@ function Signin(): JSX.Element {
           </div>
 
           <input
-            className="rounded-full px-6 py-2 hover:bg-bg-yellow cursor-pointer bg-coorporate-cyan border border-black h-auto float-end"
+            className="rounded-full max-sm:w-full px-6 py-2 hover:bg-bg-yellow cursor-pointer bg-coorporate-cyan border border-black h-auto float-end"
             type="submit"
             value="Signin"
           />
@@ -73,4 +75,4 @@ function Signin(): JSX.Element {
   );
 }
 
-export default Signin;
+export default SigninPage;

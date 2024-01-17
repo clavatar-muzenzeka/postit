@@ -73,7 +73,7 @@ function AddCommentComponent({
         </div>
         <input
         data-testid="submit-comment-button"
-          className="rounded-full px-6 py-2 hover:bg-bg-yellow cursor-pointer bg-coorporate-cyan border border-black h-auto float-end"
+          className="rounded-full max-sm:w-full px-6 py-2 hover:bg-bg-yellow cursor-pointer bg-coorporate-cyan border border-black h-auto float-end"
           type="submit"
           value={`Add comment as ${session?.user?.username}`}
         />

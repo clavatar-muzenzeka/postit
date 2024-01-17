@@ -33,27 +33,27 @@ const page = async ({ params }: { params: { postId: string } }) => {
     );
   };
   return (
-    <div>
-      <h1 className="text-6xl w-full relative text-coorporate-blue font-serif ${abril.className} mb-4 pb-4 font-extrabold capitalize">
+    <div className="max-sm:flex max-sm:flex-col items-center">
+      <h1 className="text-6xl max-sm:text-4xl max-sm:text-center w-full relative text-coorporate-blue font-serif ${abril.className} mb-4 pb-4 font-extrabold capitalize">
         {post.title}
       </h1>
       <div
         className={
           styles.userInfos +
-          ` mt-2 mb-8 text-white  bg-coorporate-orange  px-12 py-6`
+          " mt-2 mb-8 text-white max-sm:hidden cursor-pointer  bg-coorporate-orange  px-12 py-6"
         }
       >
         Autor: <strong>{user.username}</strong> ({user.email})
       </div>
-      <div className="relative">
-        <div className="hidden absolute -top-12 left-4 z-10">
+      <div className="relative max-sm:static max-sm:my-4">
+        <div className="hidden absolute max-sm:relative max-sm:top-0 max-sm:block max-sm:left-0 -top-12 left-4 z-10">
           <UserDetailsComponent user={user}></UserDetailsComponent>
         </div>
       </div>
 
       <p>{post.body}</p>
       <div className="mt-8">
-        <h1 className="text-4xl mb-4 pb-2 font-light text-coorporate-blue border-coorporate-blue">
+        <h1 className="text-4xl max-sm:text-center mb-4 pb-2 font-light text-coorporate-blue border-coorporate-blue">
           Comments
         </h1>
         <>

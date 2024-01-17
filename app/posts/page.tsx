@@ -9,7 +9,7 @@ import React from "react";
 import { Abril_Fatface } from "next/font/google";
 const abril = Abril_Fatface({ weight: "400", subsets: ["latin", "latin-ext"] });
 
-async function Posts(): Promise<JSX.Element> {
+async function PostsPage(): Promise<JSX.Element> {
   const posts: Array<IPost | ILocalPost> = await fetchPosts();
   const session: Session = (await getServerSession(authOptions)) as Session;
   const mapPostToPostComponent = (post: IPost | ILocalPost) => {
@@ -21,14 +21,14 @@ async function Posts(): Promise<JSX.Element> {
     );
   };
   return (
-    <div className="w-full">
+    <div className="w-full max-sm:h-max max-sm:flex max-sm:flex-col items-center">
       <h1
-        className="text-6xl w-full relative text-coorporate-blue font-serif ${abril.className} mb-4 pb-4 font-extrabold
+        className="text-6xl w-full max-sm:text-center relative text-coorporate-blue font-serif ${abril.className} mb-4 pb-4 font-extrabold
       "
       >
         Posts
       </h1>
-      <div className="mb-16 float-end">
+      <div className="mb-16 float-end max-sm:float-none">
         {session?.user ? (
           <Link
             className="rounded-full hover:bg-bg-yellow px-6 py-2 bg-coorporate-cyan border border-black"
@@ -51,4 +51,4 @@ async function Posts(): Promise<JSX.Element> {
   );
 }
 
-export default Posts;
+export default PostsPage;

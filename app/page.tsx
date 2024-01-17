@@ -1,8 +1,12 @@
 import React from "react";
-import Posts from "./posts/page";
+import PostsPage from "./posts/page";
 
 function MainPage(): JSX.Element {
-  return (<Posts></Posts>)
+  return (
+    <div className="max-sm:h-fit">
+      <PostsPage></PostsPage>
+    </div>
+  );
 }
 
 export default MainPage;
