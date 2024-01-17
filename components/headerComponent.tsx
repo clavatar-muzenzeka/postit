@@ -12,7 +12,9 @@ const HeaderComponent = ({ session }: { session: Session }): JSX.Element => {
       className="h-20 w-full max-sm:h-32 max-sm:py-2 max-sm:flex-col bg-bg-yellow border-b border-black flex items-center justify-between"
     >
       <div className="w-[30%] flex  items-center justify-center">
-        <Link href="/">
+        <Link
+        className="cursor-pointer"
+         href="/">
           <Image
             src="/images/logo-post-it.png"
             alt="Logo"
