@@ -1,7 +1,5 @@
 # Postit
 
-![Version mobile](https://drive.google.com/file/d/1sXfO0ZJ2KZ8FsIrECj6TQdzAyOkEg14y/view?usp=drive_link)
-
 ## Overview
 
 > This project was developed as part of a professional assessment
@@ -30,6 +28,7 @@ On a modular level, the project includes a frontend module and a Rest Serverless
 ## Project launch
 
 Clone project with the command
+
 `git clone git@github.com:clavatar-muzenzeka/postit.git`
 
 There are two ways of doing this: via Docker (recommended) or manually
