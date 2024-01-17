@@ -28,23 +28,24 @@ async function Posts(): Promise<JSX.Element> {
       >
         Posts
       </h1>
-      <div className="mb-16">
+      <div className="mb-16 float-end">
         {session?.user ? (
           <Link
-            className="rounded-full hover:bg-bg-yellow px-6 py-2 bg-coorporate-orange border border-black"
+            className="rounded-full hover:bg-bg-yellow px-6 py-2 bg-coorporate-cyan border border-black"
             href={`/posts/new?userId=${session?.user?._id ?? 0}`}
           >
-            Add Post
+            Add A Post
           </Link>
         ) : (
           <Link
-            className="rounded-full hover:bg-bg-yellow px-6 py-2 bg-coorporate-orange border border-black"
+            className="rounded-full hover:bg-bg-yellow px-6 py-2 bg-coorporate-cyan border border-black"
             href="/auth/signin"
           >
             Sign in to add post
           </Link>
         )}
       </div>
+      <div className="clear-end"></div>
       <>{posts.map(mapPostToPostComponent)}</>
     </div>
   );

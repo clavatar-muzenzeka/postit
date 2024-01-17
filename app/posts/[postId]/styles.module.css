@@ -1,3 +1,7 @@
 .userInfos:hover + div>div{
     display: block;
 }
+
+.userInfos + div>div:hover{
+    display: block;
+}

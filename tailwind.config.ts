@@ -19,6 +19,10 @@ const config: Config = {
         "coorporate-blue": "#192a6b",
         "coorporate-blue-light": "#5678e2",
         "coorporate-orange": "#af2d00",
+        "coorporate-cyan": "#00FFF7",
+      },
+      fontSize: {
+        "2xs": ".65rem",
       },
     },
   },

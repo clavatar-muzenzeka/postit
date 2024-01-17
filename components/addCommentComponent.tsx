@@ -25,16 +25,20 @@ function AddCommentComponent({
     if (resp) window.location.reload();
   };
   return (
-    <div className="mt-8 p-12 border border-black">
+    <div
+      data-testid="add-comment-component"
+      className="mt-8 p-6 border border-black"
+    >
       <form method="POST" onSubmit={onFormSubmit}>
         <div className="flex flex-col">
           <label
-            for="title"
+            htmlFor="title"
             className="mb-2 text-xl text-coorporate-orange after:content-['*']"
           >
             Title
           </label>
           <input
+            data-testid="title-input"
             className="bg-bg-yellow p-2 mb-4  focus:outline-none focus:border-coorporate-orange focus:border"
             name="title"
             id="title"
@@ -47,14 +51,16 @@ function AddCommentComponent({
         </div>
         <div className="flex flex-col">
           <label
-            for="body"
+            htmlFor="body"
             className="mb-2 text-xl
             
              text-coorporate-orange after:content-['*']"
           >
             Comment
           </label>
+
           <textarea
+            data-testid="body-input"
             className="bg-bg-yellow p-2 mb-4 focus:outline-none focus:border-coorporate-orange focus:border"
             name="body"
             id="body"
@@ -66,7 +72,8 @@ function AddCommentComponent({
           />
         </div>
         <input
-          className="rounded-full px-6 py-2 hover:bg-bg-yellow cursor-pointer bg-coorporate-orange border border-black h-auto float-end"
+        data-testid="submit-comment-button"
+          className="rounded-full px-6 py-2 hover:bg-bg-yellow cursor-pointer bg-coorporate-cyan border border-black h-auto float-end"
           type="submit"
           value={`Add comment as ${session?.user?.username}`}
         />

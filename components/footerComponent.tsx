@@ -3,7 +3,9 @@ import Link from "next/link";
 
 const FooterComponent = () => {
   return (
-    <div className="h-14 w-full flex items-center justify-end pr-12 space-x-6">
+    <div 
+      data-testid="footer"
+    className="h-14 w-full flex items-center justify-end pr-12 space-x-6">
       <span>
         By <strong>Muzenzeka Claver</strong> (+243 81 73 72 196 -{" "}
         <a

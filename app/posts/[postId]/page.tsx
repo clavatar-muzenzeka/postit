@@ -46,7 +46,7 @@ const page = async ({ params }: { params: { postId: string } }) => {
         Autor: <strong>{user.username}</strong> ({user.email})
       </div>
       <div className="relative">
-        <div className="hidden absolute p-8 bg-white -top-12 rounded-lg shadow-lg">
+        <div className="hidden absolute -top-12 left-4 z-10">
           <UserDetailsComponent user={user}></UserDetailsComponent>
         </div>
       </div>
@@ -63,12 +63,15 @@ const page = async ({ params }: { params: { postId: string } }) => {
               session={session}
             ></AddCommentComponent>
           ) : (
-            <Link
-              className="rounded-full hover:bg-bg-yellow px-6 py-2 bg-coorporate-orange border border-black"
-              href="/auth/signin"
-            >
-              Sign in to leave comment
-            </Link>
+            <>
+              <Link
+                className="rounded-full float-end hover:bg-bg-yellow px-6 py-2 bg-coorporate-cyan border border-black"
+                href="/auth/signin"
+              >
+                Sign in to leave comment
+              </Link>
+              <div className="clear-end"></div>
+            </>
           )}
         </>
       </div>

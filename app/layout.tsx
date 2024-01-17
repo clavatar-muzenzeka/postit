@@ -39,9 +39,9 @@ export default async function RootLayout({
                     alt="Logo"
                   ></img>
                   <div className="w-2/5 mt-16 h-[1px] bg-black"></div>
-                  <p className="my-4 text-center text-3xl text-coorporate-blue">
+                  <p className="my-4 text-center text-2xl text-coorporate-blue">
                     Share your toughts and ideas with the world. <br />
-                    <em className="${abril.className} font-extrabold text-coorporate-orange">
+                    <em className="${abril.className} font-serif text-4xl font-extrabold text-coorporate-orange">
                       Post it as it appears!
                     </em>
                   </p>

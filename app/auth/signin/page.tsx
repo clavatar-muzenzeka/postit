@@ -62,7 +62,7 @@ function Signin(): JSX.Element {
           </div>
 
           <input
-            className="rounded-full px-6 py-2 hover:bg-bg-yellow cursor-pointer bg-coorporate-orange border border-black h-auto float-end"
+            className="rounded-full px-6 py-2 hover:bg-bg-yellow cursor-pointer bg-coorporate-cyan border border-black h-auto float-end"
             type="submit"
             value="Signin"
           />

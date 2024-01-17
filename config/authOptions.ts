@@ -1,9 +1,8 @@
 import CredentialsProvider from "next-auth/providers/credentials";
-import NextAuth, { User } from "next-auth";
+import { User } from "next-auth";
 import { ILocalAuthUser, LocalUser } from "@/models/user";
 import { connectToDB } from "@/utils/db";
 import { HydratedDocument } from "mongoose";
-import { ILocalUser } from "@/types/localUserInterface";
 import { AuthOptions } from "next-auth";
 import { SECRET } from "./global";
 // @ts-ignore

@@ -1,12 +1,15 @@
 import React, { ReactNode } from "react";
-import FilledButtonComponent from "./fillButtonComponent";
 import { IPost } from "@/types/postInterface";
 import Link from "next/link";
 import { ILocalPost } from "@/types/localPostInterface";
 
 const PostComponent: (props: {
   post: IPost | ILocalPost;
-}) => React.JSX.Element = (props: { post: IPost | ILocalPost }) => {
+  loading: boolean;
+}) => React.JSX.Element = (props: {
+  post: IPost | ILocalPost;
+  loading: boolean;
+}) => {
   return (
     <Link
       href={`/posts/${

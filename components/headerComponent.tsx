@@ -7,7 +7,7 @@ import { signOut } from "next-auth/react";
 
 const HeaderComponent = ({ session }: { session: Session }): JSX.Element => {
   return (
-    <div className="h-20 w-full flex items-center justify-between">
+    <div className="h-20 w-full bg-bg-yellow border-b border-black flex items-center justify-between">
       <div className="w-[30%] flex items-center justify-center">
         <Link href="/">
           <Image
@@ -39,7 +39,7 @@ const HeaderComponent = ({ session }: { session: Session }): JSX.Element => {
           <>
             <Link
               href="/auth/signin"
-              className="rounded-full hover:bg-bg-yellow px-6 py-2 bg-coorporate-orange border border-black h-auto"
+              className="rounded-full hover:bg-bg-yellow px-6 py-2 bg-coorporate-cyan border border-black h-auto"
             >
               Sign in
             </Link>
