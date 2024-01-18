@@ -59,6 +59,7 @@ To launch the project manually, you must have Node JS installed on your computer
 To do this, proceed as follows:
 
 - Install dependencies using the npm command
+
 `npm i -f`
 
 - Launch the application
@@ -67,6 +68,6 @@ To do this, proceed as follows:
 
 - To run tests
 
-`npm run test``
+`npm run test`
 
 **Contact Developer: mgeniclaver@gmail.com, +243817372196**
