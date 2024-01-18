@@ -40,17 +40,17 @@ There are two ways of doing this: via Docker (recommended) or manually
 
 - Build the docker image described in the Dockerfile file located at the root of the project:
 
-`docker build . --tag "cms" --file Dockerfile`
+`docker build . --tag "postit" --file Dockerfile`
 
 - Launch the image
 
-`Docker run it <image_name>`
+`Docker run it postit`
 
 If all goes well, the application will be launched and listen on port 3000 of the localhost. Open the link http://localhost:3000 
 
 - To run tests
 
-`Docker run it <image_name> npm run test`
+`Docker run it postit npm run test`
 
 2. Launch the project manually:
 
