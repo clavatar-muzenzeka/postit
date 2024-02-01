@@ -8,12 +8,14 @@ const UserDetailsComponent: (props: {
 }) => React.JSX.Element = (props: { user: IUser | ILocalUser }) => {
   return (
     <>
-      <span className="hidden w-full text-center text-lg my-2 font-bold max-sm:block">Author</span>
+      <span className="hidden w-full text-center text-lg my-2 font-bold max-sm:block">
+        Author
+      </span>
       <div
         data-testid="user-details-component"
         className="w-96 max-h-[50vh] max-sm:max-h-max max-sm:h-max flex flex-col rounded overflow-hidden rounded-lg bg-white max-sm:shadow-none shadow-lg"
       >
-        <div className="flex shrink-0 flex-col bg-coorporate-blue p-4 items-center">
+        <div className="flex shrink-0 flex-col max-sm:bg-coorporate-orange bg-coorporate-blue p-4 items-center">
           <div className="rounded-full mb-4 text-coorporate-orange bg-white h-16 w-16 flex items-center justify-center">
             {props.user.name[0].toUpperCase() +
               props.user.name[props.user.name.length - 1].toUpperCase()}

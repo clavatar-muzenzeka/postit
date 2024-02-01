@@ -14,7 +14,9 @@ export const GET = async (
     })
       .populate("userId")
       .exec();
-    if (post) return new Response(JSON.stringify(post), { status: 200 });
+    if (!post)  return new Response(`Post with id ${context.params.postId} not found`, { status: 404 });
+    return new Response(JSON.stringify(post), { status: 200 });
+    
   } catch (error: any) {
     console.log("Error on fetching posts: ", error);
     return new Response(`Failed to load posts, details: ${error.message}`, {

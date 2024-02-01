@@ -1,7 +1,7 @@
 "use client";
 import { AUTH_REDIRECT_URL } from "@/config/global";
 import { SignInOptions, SignInResponse, signIn } from "next-auth/react";
-import React, { EventHandler, FormEvent, useState } from "react";
+import React, { EventHandler, FormEvent, useEffect, useState } from "react";
 
 function SigninPage(): JSX.Element {
   const [credentials, setCredentials] = useState<{
@@ -12,6 +12,11 @@ function SigninPage(): JSX.Element {
     usernameError: string | null;
     passwordError: string | null;
   }>({ usernameError: null, passwordError: null });
+
+  useEffect(() => {
+    console.log("Errors: ", errors);
+    if (credentials.username != "") validateForm(credentials);
+  }, [credentials]);
 
   const validateForm = (formValue: { username: string; password: string }) => {
     let formValid = false;
@@ -26,7 +31,7 @@ function SigninPage(): JSX.Element {
     } else if (formValue.password.length < 4) {
       setErrors({
         ...errors,
-        passwordError: "Password must be at least 4 characters",
+        passwordError: "Password must have at least 4 characters",
         usernameError: null,
       });
     } else formValid = true;
@@ -57,6 +62,8 @@ function SigninPage(): JSX.Element {
             >
               Username
             </label>
+            <>
+            </>
             <input
               data-testid="username-input"
               className="bg-bg-yellow p-2   focus:outline-none focus:border-coorporate-orange focus:border"
