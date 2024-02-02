@@ -7,10 +7,21 @@ import { Session, getServerSession } from "next-auth";
 import Link from "next/link";
 import React from "react";
 import { Abril_Fatface } from "next/font/google";
+import { postValidationSchema, postsArrayValidationSchema } from "@/validation/postValidation";
+import { z } from "zod";
 const abril = Abril_Fatface({ weight: "400", subsets: ["latin", "latin-ext"] });
 
 async function PostsPage(): Promise<JSX.Element> {
-  const posts: Array<IPost | ILocalPost> = await fetchPosts();
+  const posts: Array<IPost | ILocalPost> | undefined = await fetchPosts();
+  try {
+    const validatedData = postsArrayValidationSchema.parse(posts);
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      console.error("/!\\ Validation errors:", error.errors); // TODO: Handle error properly
+    } else {
+      console.error("/!\\ Unexpected error:", error); // TODO: Handle error properly
+    }
+  }
   const session: Session = (await getServerSession(authOptions)) as Session;
   const mapPostToPostComponent = (post: IPost | ILocalPost) => {
     return (
@@ -46,7 +57,7 @@ async function PostsPage(): Promise<JSX.Element> {
         )}
       </div>
       <div className="clear-end"></div>
-      <>{posts.map(mapPostToPostComponent)}</>
+      <>{posts?.map(mapPostToPostComponent)}</>
     </div>
   );
 }
