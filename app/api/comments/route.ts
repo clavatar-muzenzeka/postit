@@ -9,13 +9,11 @@ export const GET = async (request: NextRequest) => {
 
   try {
     await connectToDB();
-    console.log("Fetching comments for postId: ", postId);
     const comments: Array<ILocalComment> = await LocalComment.find({
       postId,
     }).sort({
       _id: -1,
     });
-    console.log("Fetched comments: ", comments);
     return new Response(JSON.stringify(comments), { status: 200 });
   } catch (error: any) {
     console.log("Error on fetching comments: ", error);

@@ -10,7 +10,6 @@ export const GET = async (request: NextRequest) => {
   try {
     await connectToDB();
     const posts: Array<ILocalPost> = await LocalPost.find({}).sort({ _id: -1 });
-    console.log("Fetched posts: ", posts);
     return new Response(JSON.stringify(posts), { status: 200 });
   } catch (error: any) {
     console.log("Error on fetching posts: ", error);
